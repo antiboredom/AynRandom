@@ -1,6 +1,9 @@
 AynRandom
 =========
 
-Who I am, and what I believe in.
+Since pretty much everything is a parasite, we made a Twitter bot to assert that reality.
+
+Artist's condition is a parasite.
+Hesiatation is a parasite.
 
 http://twitter.com/aynrandomized
