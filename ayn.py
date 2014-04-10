@@ -7,7 +7,7 @@ class AynRandom(object):
 
     def __init__(self):
         self.phrases = []
-        self.already_tweeted = [line for line in open("record.txt")]
+        self.already_tweeted = [line.strip() for line in open("record.txt")]
         self.setup_twitter()
 
     def setup_twitter(self):
@@ -25,20 +25,20 @@ class AynRandom(object):
         self.nouns = [line.strip() for line in open(filename) if line.strip() not in self.already_tweeted]
 
     def record(self, noun):
-        recordkeeper = open("record.txt", "w");
-        recordkeeper.write("%s\n" % noun)
-        recordkeeper.close()
+        with open("record.txt", "a") as recordkeeper:
+            recordkeeper.write(noun + "\n")
 
     def create_phrase(self):
         phrase = random.choice(self.phrases)
         noun = random.choice(self.nouns)
         self.record(noun)
-        return phrase.replace("NOUN", noun).capitalize()
+        noun = noun.capitalize()
+        return phrase.replace("NOUN", noun)
 
     def tweet(self):
         phrase = self.create_phrase()
         print phrase
-        #self.twitter.update_status(status=phrase)
+        self.twitter.update_status(status=phrase)
 
 
 import sys
